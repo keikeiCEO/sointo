@@ -16,14 +16,19 @@
 
 ## ローカルでの受け取り方
 
+**A. zipで受け取る（gitなしでOK）**
+1. クラウドセッションから送られた `brain-knowhow-handoff.zip` をダウンロードし、好きな場所（例: `ドキュメント\sointo`）に展開する
+2. ローカルのClaudeで、展開したフォルダを作業フォルダとして開く（またはファイルをチャットにドラッグする）
+
+**B. GitHubから取る（gitとGitHubのログインがある場合）**
+
 ```bash
 git clone https://github.com/keikeiCEO/sointo.git
 cd sointo
-git checkout claude/brain-monetization-guide-3tl1hj   # 現在のデフォルトブランチ。clone直後はすでにこのブランチのはず
 claude
 ```
 
-`CLAUDE.md` は起動時に自動で読み込まれる。ガイド本体は長いので、必要な章だけ読ませる。
+どちらの場合も `CLAUDE.md` は作業フォルダ直下にあれば自動で読み込まれる。ガイド本体は長いので、必要な章だけ読ませる。
 
 ## 新しいセッションの最初に貼るプロンプト（例）
 
