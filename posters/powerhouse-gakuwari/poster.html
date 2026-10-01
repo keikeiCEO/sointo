@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>学割プラン ポスター</title>
+<link href="fonts/fonts.css" rel="stylesheet">
+<style>
+  @page { size: 297mm 420mm; margin: 0; }
+  :root {
+    --red: #E50213;
+    --red-hi: #FF3B30;
+    --ink: #0B0B0D;
+    --white: #FFFFFF;
+    --mute: #BDBDBD;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--ink); }
+  body { font-family: "Noto Sans JP", sans-serif; color: var(--white); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .poster { width: 297mm; height: 420mm; position: relative; overflow: hidden; background: var(--ink); }
+  .n { font-family: "Barlow Condensed", sans-serif; font-weight: 700; }
+  .abs { position: absolute; }
+
+  /* 背景（ChatGPT生成）＋文字が乗る部分だけ暗く */
+  .bg { inset: 0; background: url(bg.jpg) center top / 100% auto no-repeat, var(--ink); }
+  .shade { inset: 0; background: linear-gradient(180deg, rgba(11,11,13,.55) 0%, rgba(11,11,13,0) 14%, rgba(11,11,13,0) 32%, rgba(11,11,13,.6) 44%, rgba(11,11,13,.93) 56%, rgba(11,11,13,.96) 100%); }
+
+  /* ロゴ：白フチのステッカー風 */
+  .logo { top: 9mm; left: 13mm; width: 62mm; }
+  .logo img { width: 100%; display: block; }
+
+  /* 見出し */
+  .eyebrow { top: 166mm; left: 18mm; display: flex; align-items: center; gap: 3mm; }
+  .eyebrow .tag { background: var(--red); color: #fff; font-weight: 900; font-size: 7mm; letter-spacing: .1em;
+    padding: 1.6mm 5mm; transform: skewX(-12deg); box-shadow: 0 0 6mm rgba(229,2,19,.6); }
+  .eyebrow .tag span { display: inline-block; transform: skewX(12deg); }
+  .eyebrow .who { font-weight: 700; font-size: 5.8mm; color: #E8E8E8; text-shadow: 0 .4mm 2mm rgba(0,0,0,.8); }
+
+  .head { top: 180mm; left: 17mm; font-weight: 900; font-size: 16mm; line-height: 1.1; letter-spacing: -.01em;
+    text-shadow: 0 .8mm 4mm rgba(0,0,0,.85); }
+
+  /* 価格：白メタリック＋赤グロー＋斜体 */
+  .price { top: 200mm; left: 14mm; display: flex; align-items: flex-end; }
+  .price .m { font-weight: 900; font-size: 12mm; margin: 0 1mm 7mm 3mm; text-shadow: 0 .6mm 3mm rgba(0,0,0,.8); }
+  .price .big { font-size: 70mm; line-height: .9; letter-spacing: -.01em; transform: skewX(-8deg); transform-origin: bottom left;
+    background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 46%, #D9D9D9 54%, #FFFFFF 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 0 2.5mm rgba(229,2,19,.85)) drop-shadow(0 0 9mm rgba(229,2,19,.55)); }
+  .price .y { margin: 0 0 7mm 3mm; display: flex; flex-direction: column; align-items: flex-start; gap: 1.5mm; }
+  .price .y small { background: #fff; color: var(--ink); font-size: 4.6mm; font-weight: 900; padding: .3mm 2mm; }
+  .price .y b { font-size: 14mm; font-weight: 900; line-height: 1; text-shadow: 0 0 4mm rgba(229,2,19,.7); }
+
+  /* 赤の斜めリボン */
+  .ribbon { top: 263mm; left: -6mm; right: -6mm; height: 19mm; background: linear-gradient(90deg, #B5000E, var(--red) 30%, var(--red-hi) 70%, var(--red));
+    transform: rotate(-2.2deg); box-shadow: 0 1.5mm 6mm rgba(0,0,0,.6), 0 0 8mm rgba(229,2,19,.45);
+    display: flex; align-items: center; justify-content: center; gap: 8mm; font-weight: 900; font-size: 8.2mm; }
+  .ribbon .n { font-size: 12mm; line-height: 1; }
+  .ribbon i { width: .6mm; height: 8mm; background: rgba(255,255,255,.6); }
+
+  /* 3つの条件：ガラス風カード */
+  .facts { top: 290mm; left: 15mm; right: 15mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
+  .fact { border: .35mm solid rgba(255,255,255,.22); background: linear-gradient(160deg, rgba(255,255,255,.12), rgba(255,255,255,.03));
+    border-radius: 2.5mm; padding: 3.6mm 5mm 4mm; position: relative; overflow: hidden; }
+  .fact::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 1.2mm; background: var(--red); box-shadow: 0 0 3mm var(--red); }
+  .fact .k { font-size: 4.8mm; font-weight: 700; color: var(--mute); }
+  .fact .v { font-size: 10.5mm; font-weight: 900; line-height: 1.2; }
+  .fact .v .n { font-size: 13.5mm; }
+
+  /* 下段 */
+  .ext { top: 330mm; left: 17mm; width: 74mm; height: 62mm; background: #fff; padding: 1.6mm; transform: rotate(-3deg);
+    box-shadow: 0 2mm 6mm rgba(0,0,0,.7); }
+  .ext div { width: 100%; height: 100%; background: url(exterior.jpg) center 40% / cover no-repeat; }
+  .ext .pin { position: absolute; right: -5mm; top: -4mm; background: var(--red); color: #fff; font-weight: 900; font-size: 5.2mm;
+    padding: 1.2mm 3mm; transform: rotate(5deg); box-shadow: 0 1mm 3mm rgba(0,0,0,.5); white-space: nowrap; }
+
+  .cta { top: 330mm; left: 100mm; width: 140mm; }
+  .cta .place { font-size: 8.2mm; font-weight: 900; line-height: 1.35; }
+  .cta .lead { font-size: 4.8mm; font-weight: 700; color: var(--mute); margin-bottom: .5mm; }
+  .cta .place em { font-style: normal; color: var(--red-hi); }
+  .cta .tel { margin-top: 3mm; display: flex; align-items: center; gap: 2.5mm; }
+  .cta .tel small { font-size: 4.8mm; font-weight: 900; background: #fff; color: var(--ink); padding: .2mm 1.6mm; }
+  .cta .tel .n { font-size: 17mm; line-height: 1; text-shadow: 0 0 4mm rgba(229,2,19,.55); }
+  .cta .sub { font-size: 4.3mm; font-weight: 500; color: var(--mute); margin-top: 1.4mm; line-height: 1.5; }
+
+  .qr { top: 334mm; right: 12mm; width: 50mm; text-align: center; }
+  .qr .img { background: #fff; padding: 2mm; border-radius: 1.5mm; width: 38mm; margin: 0 auto; }
+  .qr img { width: 100%; display: block; image-rendering: pixelated; }
+  .qr p { font-size: 5.6mm; font-weight: 900; margin-top: 2mm; line-height: 1.3; color: #fff; background: var(--red); padding: 1.6mm 0 1.8mm; border-radius: 1.2mm; box-shadow: 0 0 4mm rgba(229,2,19,.5); }
+
+  .notes { left: 15mm; right: 15mm; bottom: 5mm; font-size: 3.5mm; color: #A8A8A8; line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <div class="abs bg"></div>
+  <div class="abs shade"></div>
+
+  <div class="abs logo"><img src="logo.png" alt="POWERHOUSE GYM SAPPORO,JAPAN"></div>
+
+  <div class="abs eyebrow"><span class="tag"><span>学生限定 学割プラン</span></span><span class="who">大学・大学院・短大・専門学校生</span></div>
+  <div class="abs head">学生なら、本格ジムが</div>
+
+  <div class="abs price">
+    <span class="m">月</span><span class="big n">2,980</span>
+    <span class="y"><small>税込</small><b>円</b></span>
+  </div>
+
+  <div class="abs ribbon">
+    <span>通常会員より 毎月<span class="n">4,698</span>円おトク</span><i></i><span>1日あたり 約<span class="n">99</span>円</span>
+  </div>
+
+  <div class="abs facts">
+    <div class="fact"><div class="k">入会金・事務手数料</div><div class="v"><span class="n">0</span>円</div></div>
+    <div class="fact"><div class="k">365日 使い放題</div><div class="v"><span class="n">7:00–23:00</span></div></div>
+    <div class="fact"><div class="k">見学・無料体験</div><div class="v">QRから受付中</div></div>
+  </div>
+
+  <div class="abs ext"><div></div></div>
+
+  <div class="abs cta">
+    <div class="lead">授業の前後に、そのまま寄れます</div>
+    <div class="place">このビルの<em>6階</em>。<br>学生証を持って、まずは見学へ。</div>
+    <div class="tel"><small>TEL</small><span class="n">011-212-1174</span></div>
+    <div class="sub">学割のご入会は窓口で 11:00–18:00<br>札幌市中央区南1条西8丁目9-2 BB18ビル6階<br>大通駅 徒歩7分／西11丁目駅 徒歩5分</div>
+  </div>
+
+  <div class="abs qr"><div class="img"><img src="qr.png" alt="公式サイト"></div><p>見学・体験予約は<br>こちら</p></div>
+
+  <div class="abs notes">※学割は学生証の提示が必要です（毎年度）。在学中に限ります。　※通常会員は月額7,678円（税込）。1日あたりの金額は月額2,980円を30日で割った目安です。</div>
+
+</div>
+</body>
+</html>

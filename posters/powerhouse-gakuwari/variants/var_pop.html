@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>学割ポスター 案B ポップ</title>
+<link href="../fonts/fonts.css" rel="stylesheet">
+<style>
+  @page { size: 297mm 420mm; margin: 0; }
+  :root { --red: #E50213; --red-d: #B8000F; --ink: #111214; --yellow: #FFE14D; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Noto Sans JP", sans-serif; color: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; background: var(--red); }
+  .poster { width: 297mm; height: 420mm; position: relative; overflow: hidden;
+    background:
+      radial-gradient(circle, rgba(255,255,255,.13) .55mm, transparent .65mm) 0 0 / 4mm 4mm,
+      repeating-linear-gradient(-35deg, rgba(0,0,0,.06) 0 12mm, transparent 12mm 26mm),
+      linear-gradient(160deg, #F0141F 0%, var(--red) 45%, var(--red-d) 100%); }
+  .n { font-family: "Barlow Condensed", sans-serif; font-weight: 700; }
+  .abs { position: absolute; }
+
+  /* 上部の黒帯（ロゴを赤地に置かないため） */
+  .top { top: 0; left: 0; right: 0; height: 64mm; background: var(--ink); clip-path: polygon(0 0, 100% 0, 100% 78%, 0 100%); }
+  .logo { top: 7mm; left: 14mm; width: 54mm; }
+  .top-copy { top: 16mm; right: 16mm; text-align: right; }
+  .top-copy .a { display: inline-block; background: var(--yellow); color: var(--ink); font-weight: 900; font-size: 8mm; padding: 1.2mm 4mm; transform: rotate(-2deg); }
+  .top-copy .b { font-weight: 700; font-size: 5.6mm; margin-top: 3mm; }
+
+  /* 写真2枚：傾けたフレーム */
+  .ph1 { top: 74mm; left: 12mm; width: 178mm; height: 118mm; background: #fff; padding: 2.2mm; transform: rotate(-3deg);
+    box-shadow: 0 3mm 8mm rgba(0,0,0,.35); }
+  .ph1 div { width: 100%; height: 100%; background: url(../interior.jpg) center 60% / cover no-repeat; }
+  .ph2 { top: 128mm; right: 12mm; width: 92mm; height: 84mm; background: #fff; padding: 2.2mm; transform: rotate(4deg);
+    box-shadow: 0 3mm 8mm rgba(0,0,0,.35); }
+  .ph2 div { width: 100%; height: 100%; background: url(../exterior.jpg) center 40% / cover no-repeat; }
+  .ph2 .cap { position: absolute; left: 50%; bottom: -6mm; transform: translateX(-50%) rotate(-3deg); white-space: nowrap;
+    background: var(--ink); color: #fff; font-weight: 900; font-size: 5mm; padding: 1.4mm 4mm; }
+  .tape { position: absolute; width: 26mm; height: 8mm; background: rgba(255,225,77,.85); }
+
+  /* メイン：1日約99円 */
+  .who { top: 224mm; left: 16mm; font-weight: 900; font-size: 6.4mm; }
+  .who span { background: #fff; color: var(--red); padding: .8mm 3mm; margin-right: 2mm; }
+  .hook { top: 240mm; left: 13mm; display: flex; align-items: flex-end; font-weight: 900; text-shadow: 1.6mm 1.6mm 0 var(--ink); }
+  .hook .s { font-size: 13mm; margin: 0 3mm 7mm 0; line-height: 1.15; }
+  .hook .s2 { font-size: 18mm; margin: 0 1mm 5mm 0; }
+  .hook .big { font-size: 78mm; line-height: .86; color: var(--yellow); }
+  .hook .e { font-size: 18mm; margin: 0 0 5mm 2mm; }
+
+  .monthly { top: 244mm; right: 14mm; width: 98mm; background: #fff; color: var(--ink); border-radius: 3mm; padding: 4mm 5mm;
+    box-shadow: 1.6mm 1.6mm 0 var(--ink); transform: rotate(2deg); }
+  .monthly .k { font-weight: 900; font-size: 5.4mm; }
+  .monthly .p { display: flex; align-items: flex-end; gap: 1mm; }
+  .monthly .p .n { font-size: 26mm; line-height: .9; color: var(--red); }
+  .monthly .p b { font-size: 9mm; font-weight: 900; margin-bottom: 1mm; }
+  .monthly .p small { font-size: 4mm; font-weight: 700; margin-bottom: 2mm; }
+  .monthly .s { font-size: 5mm; font-weight: 900; margin-top: 1mm; }
+  .monthly .s .n { font-size: 7.4mm; color: var(--red); }
+
+  .facts { top: 312mm; left: 14mm; right: 14mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
+  .fact { background: var(--ink); border-radius: 3mm; padding: 3.2mm 4.5mm 3.6mm; }
+  .fact .k { font-size: 4.6mm; font-weight: 700; color: var(--yellow); }
+  .fact .v { font-size: 10mm; font-weight: 900; line-height: 1.2; }
+  .fact .v .n { font-size: 13mm; }
+
+  .bottom { top: 348mm; left: 0; right: 0; bottom: 0; background: #fff; color: var(--ink); clip-path: polygon(0 0, 100% 9%, 100% 100%, 0 100%); }
+  .cta { top: 354mm; left: 16mm; color: var(--ink); }
+  .cta .place { font-size: 8mm; font-weight: 900; line-height: 1.35; }
+  .cta .place em { font-style: normal; color: var(--red); }
+  .cta .tel { margin-top: 1.5mm; display: flex; align-items: center; gap: 2.5mm; }
+  .cta .tel small { font-size: 4.6mm; font-weight: 900; background: var(--ink); color: #fff; padding: .2mm 1.6mm; }
+  .cta .tel .n { font-size: 15mm; line-height: 1; }
+  .cta .sub { font-size: 4mm; font-weight: 500; color: #555; margin-top: 1.2mm; line-height: 1.5; }
+  .qr { top: 352mm; right: 14mm; width: 50mm; text-align: center; }
+  .qr .img { padding: 1mm; width: 36mm; margin: 0 auto; background: #fff; }
+  .qr img { width: 100%; display: block; image-rendering: pixelated; }
+  .qr p { font-size: 5.2mm; font-weight: 900; margin-top: 1.5mm; line-height: 1.3; color: #fff; background: var(--red); padding: 1.4mm 0 1.6mm; border-radius: 1.2mm; }
+  .notes { left: 16mm; right: 16mm; bottom: 3.5mm; font-size: 3.1mm; color: #777; }
+</style>
+</head>
+<body>
+<div class="poster">
+  <div class="abs top"></div>
+  <img class="abs logo" src="../logo.png" alt="POWERHOUSE GYM SAPPORO,JAPAN">
+  <div class="abs top-copy"><span class="a">学生限定 学割プラン</span><div class="b">大学・大学院・短大・専門学校生</div></div>
+
+  <div class="abs ph1"><div></div><span class="tape" style="left:-6mm; top:-3mm; transform: rotate(-30deg);"></span><span class="tape" style="right:-6mm; top:-3mm; transform: rotate(28deg);"></span></div>
+  <div class="abs ph2"><div></div><span class="tape" style="left:33mm; top:-4mm; transform: rotate(-4deg);"></span><span class="cap">この看板が目印！</span></div>
+
+  <div class="abs who"><span>授業帰りに</span>本格ジム、</div>
+  <div class="abs hook"><span class="s">1日<br>あたり</span><span class="s2">約</span><span class="big n">99</span><span class="e">円</span></div>
+
+  <div class="abs monthly">
+    <div class="k">学割 月額</div>
+    <div class="p"><span class="n">2,980</span><b>円</b><small>（税込）</small></div>
+    <div class="s">通常会員より 毎月<span class="n">4,698</span>円おトク</div>
+  </div>
+
+  <div class="abs facts">
+    <div class="fact"><div class="k">入会金・事務手数料</div><div class="v"><span class="n">0</span>円</div></div>
+    <div class="fact"><div class="k">365日 使い放題</div><div class="v"><span class="n">7:00–23:00</span></div></div>
+    <div class="fact"><div class="k">見学・無料体験</div><div class="v">QRから受付中</div></div>
+  </div>
+
+  <div class="abs bottom"></div>
+  <div class="abs cta">
+    <div class="place">このビルの<em>6階</em>。学生証を持って、まずは見学へ。</div>
+    <div class="tel"><small>TEL</small><span class="n">011-212-1174</span></div>
+    <div class="sub">学割のご入会は窓口で 11:00–18:00<br>札幌市中央区南1条西8丁目9-2 BB18ビル6階　大通駅 徒歩7分／西11丁目駅 徒歩5分</div>
+  </div>
+  <div class="abs qr"><div class="img"><img src="../qr.png" alt="QR"></div><p>見学・体験予約は<br>こちら</p></div>
+  <div class="abs notes">※学割は学生証の提示が必要です（毎年度）。在学中に限ります。　※通常会員は月額7,678円（税込）。1日あたりの金額は月額2,980円を30日で割った目安です。</div>
+</div>
+</body>
+</html>
