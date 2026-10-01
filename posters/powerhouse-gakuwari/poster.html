@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>学割プラン ポスター</title>
+<link href="fonts/fonts.css" rel="stylesheet">
+<style>
+  @page { size: 297mm 420mm; margin: 0; }
+  :root {
+    --cyan: #2EC4F1;
+    --cyan-d: #0E9CCB;
+    --ink: #0B0D10;
+    --ink2: #16191E;
+    --white: #FFFFFF;
+    --mute: #B9C2CC;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--ink); }
+  body { font-family: "Noto Sans JP", sans-serif; color: var(--white); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .poster { width: 297mm; height: 420mm; position: relative; overflow: hidden; background: var(--ink); }
+  .num { font-family: "Anton", "Oswald", sans-serif; letter-spacing: 0.01em; }
+  .en  { font-family: "Oswald", sans-serif; }
+
+  /* ---------- 上部：写真＋ブランド ---------- */
+  .hero { position: absolute; inset: 0 0 auto 0; height: 168mm;
+    background:
+      repeating-linear-gradient(-60deg, rgba(255,255,255,.035) 0 1.2mm, transparent 1.2mm 7mm),
+      radial-gradient(120% 90% at 85% 10%, #1B2A36 0%, var(--ink) 70%); }
+  .ghost { position: absolute; top: 18mm; left: -6mm; z-index: 1; font-family: "Anton", sans-serif; font-size: 78mm; line-height: .95;
+    color: transparent; -webkit-text-stroke: .6mm rgba(46,196,241,.22); letter-spacing: .01em; white-space: nowrap; }
+  .hero > * { position: relative; z-index: 1; }
+
+  .brand { position: absolute; top: 16mm; left: 16mm; z-index: 2; }
+  .brand .logo { font-family: "Oswald", sans-serif; font-weight: 700; font-size: 13.5mm; line-height: 1; letter-spacing: .01em; }
+  .brand .kana { margin-top: 2.5mm; font-weight: 700; font-size: 5.2mm; letter-spacing: .12em; display: flex; align-items: center; gap: 3mm; }
+  .brand .kana::before { content: ""; width: 10mm; height: 1.2mm; background: var(--cyan); }
+
+  .brand .concept { margin-top: 7mm; font-weight: 700; font-size: 6.4mm; color: var(--cyan); letter-spacing: .06em; }
+  /* 掲示許可印スペース */
+  .stamp { position: absolute; top: 12mm; right: 12mm; width: 42mm; height: 42mm; z-index: 2;
+    border: 0.5mm dashed rgba(255,255,255,.65); background: rgba(255,255,255,.92); color: #555;
+    font-size: 3mm; font-weight: 500; text-align: center; padding-top: 3mm; line-height: 1.4; }
+
+  .target { position: absolute; top: 68mm; left: 16mm; z-index: 2; display: inline-flex; align-items: stretch; font-weight: 900; }
+  .target .tag { background: var(--cyan); color: var(--ink); font-size: 8mm; padding: 2mm 4.5mm; }
+  .target .who { background: var(--white); color: var(--ink); font-size: 8mm; padding: 2mm 5mm; }
+
+  .head { position: absolute; top: 86mm; left: 14mm; right: 14mm; z-index: 2; }
+  .head .l1 { font-weight: 900; font-size: 23mm; line-height: 1.05; letter-spacing: -.01em; }
+  .head .l1 .c { color: var(--cyan); }
+
+  /* ---------- 価格 ---------- */
+  .price { position: absolute; top: 122mm; left: 0; right: 0; height: 88mm; z-index: 2; }
+  .price .band { position: absolute; left: 0; right: 0; top: 0; bottom: 0; background: var(--cyan);
+    clip-path: polygon(0 6%, 100% 0, 100% 94%, 0 100%); }
+  .price .inner { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding-right: 4mm; color: var(--ink); }
+  .price .lbl { background: var(--ink); color: var(--white); font-weight: 900; font-size: 9.5mm; line-height: 1.15;
+    padding: 4mm 3.5mm; text-align: center; margin-right: 4mm; }
+  .price .big { font-size: 74mm; line-height: 1; margin-top: -2mm; }
+  .price .yen { display: flex; flex-direction: column; align-items: flex-start; margin-left: 2mm; align-self: flex-end; margin-bottom: 14mm; }
+  .price .tax { background: var(--ink); color: var(--white); font-weight: 900; font-size: 5.5mm; padding: .6mm 2.2mm; margin-bottom: 1mm; }
+  .price .yen b { font-weight: 900; font-size: 22mm; line-height: 1; }
+
+  .save { position: absolute; top: 216mm; left: 14mm; right: 14mm; display: flex; gap: 6mm; align-items: stretch; }
+  .save .box { flex: 1; border: 0.8mm solid var(--cyan); padding: 4mm 6mm; display: flex; flex-direction: column; justify-content: center; }
+  .save .k { font-size: 5.6mm; font-weight: 700; color: var(--mute); }
+  .save .v { font-weight: 900; font-size: 9mm; line-height: 1.25; }
+  .save .v .num { font-size: 15mm; color: var(--cyan); margin: 0 .8mm; font-weight: 400; }
+  .save .v small { font-size: 6mm; }
+
+  /* ---------- 3つのポイント ---------- */
+  .points { position: absolute; top: 254mm; left: 14mm; right: 14mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; }
+  .pt { background: var(--ink2); border-top: 1.6mm solid var(--cyan); padding: 4.5mm 3mm 5mm; text-align: center; }
+  .pt .k { font-size: 5.4mm; font-weight: 700; color: var(--mute); }
+  .pt .v { margin-top: 1.5mm; font-weight: 900; font-size: 13mm; line-height: 1.05; }
+  .pt .v .num { font-weight: 400; font-size: 17mm; color: var(--cyan); }
+  .pt .v .en { font-weight: 700; font-size: 12.5mm; }
+  .pt .s { margin-top: 1.5mm; font-size: 4.6mm; font-weight: 700; }
+
+  .access { position: absolute; top: 302mm; left: 14mm; right: 14mm; display: flex; align-items: center; gap: 4mm; font-weight: 900; font-size: 7.6mm; }
+  .access .pin { background: var(--white); color: var(--ink); padding: 1mm 3mm; font-size: 5.6mm; }
+  .access .c { color: var(--cyan); }
+
+  .notes { position: absolute; top: 316mm; left: 14mm; right: 14mm; font-size: 4mm; line-height: 1.6; color: var(--mute); font-weight: 500; }
+
+  /* ---------- 下部 CTA ---------- */
+  .cta { position: absolute; left: 0; right: 0; bottom: 0; height: 84mm; background: var(--cyan); color: var(--ink);
+    clip-path: polygon(0 7%, 100% 0, 100% 100%, 0 100%); }
+  .cta .copy { position: absolute; top: 12mm; left: 14mm; font-weight: 900; font-size: 11mm; letter-spacing: -.01em; }
+  .cta .copy span { background: var(--ink); color: var(--white); padding: 0 2.5mm; margin-right: .5mm; }
+  .cta .tel { position: absolute; top: 30mm; left: 14mm; }
+  .cta .tel .hours { font-weight: 900; font-size: 5.4mm; display: flex; align-items: center; gap: 2.5mm; }
+  .cta .tel .hours b { background: var(--ink); color: var(--white); padding: .4mm 2.5mm; font-family: "Oswald", sans-serif; font-weight: 700; font-size: 5.8mm; }
+  .cta .tel .no { display: flex; align-items: center; gap: 3mm; margin-top: 1mm; }
+  .cta .tel .no svg { width: 14mm; height: 14mm; }
+  .cta .tel .no .num { font-size: 20mm; line-height: 1.1; }
+  .cta .addr { position: absolute; left: 14mm; bottom: 7mm; font-size: 4.4mm; font-weight: 700; line-height: 1.45; }
+  .cta .addr .en { font-size: 5mm; font-weight: 700; }
+  .cta .qr { position: absolute; right: 14mm; bottom: 8mm; width: 56mm; text-align: center; }
+  .cta .qr .img { background: var(--white); padding: 3.5mm; }
+  .cta .qr img { display: block; width: 100%; image-rendering: pixelated; }
+  .cta .qr p { margin-top: 1.8mm; font-size: 4.2mm; font-weight: 900; line-height: 1.3; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <div class="hero"></div>
+  <div class="ghost">STUDENT<br>PLAN</div>
+
+  <div class="brand">
+    <div class="logo">POWERHOUSE GYM SAPPORO JAPAN</div>
+    <div class="kana">パワーハウスジム札幌ジャパン</div>
+    <div class="concept">本格トレーニングの、最初の一歩。</div>
+  </div>
+
+  <div class="stamp">掲示許可印欄<br>（学校使用）</div>
+
+  <div class="target"><span class="tag">学生限定</span><span class="who">大学・大学院・短大・専門学校生</span></div>
+
+  <div class="head">
+    <div class="l1">学生なら、<span class="c">学割プラン</span>で</div>
+  </div>
+
+  <div class="price">
+    <div class="band"></div>
+    <div class="inner">
+      <div class="lbl">月額</div>
+      <div class="big num">2,980</div>
+      <div class="yen"><span class="tax">税込</span><b>円</b></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="box">
+      <div class="k">一般会員（月額7,678円）より</div>
+      <div class="v">毎月<span class="num">4,698</span>円おトク</div>
+    </div>
+    <div class="box">
+      <div class="k">30日で割ると</div>
+      <div class="v">1日あたり約<span class="num">99</span>円</div>
+    </div>
+  </div>
+
+  <div class="points">
+    <div class="pt">
+      <div class="k">入会金・事務手数料</div>
+      <div class="v"><span class="num">0</span>円</div>
+      <div class="s">始めやすい</div>
+    </div>
+    <div class="pt">
+      <div class="k">毎日使える</div>
+      <div class="v"><span class="en">7:00-23:00</span></div>
+      <div class="s">授業前も、バイト帰りも</div>
+    </div>
+    <div class="pt">
+      <div class="k">見学・無料体験</div>
+      <div class="v">受付中</div>
+      <div class="s">ひとりでも気軽に</div>
+    </div>
+  </div>
+
+  <div class="access">
+    <span class="pin">アクセス</span>
+    <span>大通駅 徒歩<span class="c">7</span>分</span><span>／</span><span>西11丁目駅 徒歩<span class="c">5</span>分</span>
+  </div>
+
+  <div class="notes">
+    ※学生証の提示が必要です（毎年度）。在学中に限ります。　※一般会員（フルタイム）は月額7,678円（税込）。<br>
+    ※1日あたりの金額は月額2,980円を30日で割った目安です。
+  </div>
+
+  <div class="cta">
+    <div class="copy"><span>学生証</span>を持って、まずは見学へ。</div>
+    <div class="tel">
+      <div class="hours">学割のご入会は窓口で <b>11:00-18:00</b></div>
+      <div class="no">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#0B0D10"/><path fill="#2EC4F1" d="M16.6 14.2l-1.9-.9c-.3-.1-.7 0-.9.2l-.8 1c-1.4-.7-2.6-1.9-3.3-3.3l1-.8c.3-.2.3-.6.2-.9l-.9-1.9c-.2-.4-.6-.5-1-.4l-1.5.4c-.4.1-.6.4-.6.8 0 4.4 3.6 8 8 8 .4 0 .7-.3.8-.6l.4-1.5c.1-.5-.1-.9-.5-1.1z"/></svg>
+        <span class="num">011-212-1174</span>
+      </div>
+    </div>
+    <div class="addr">
+      <div class="en">POWERHOUSE GYM SAPPORO JAPAN</div>
+      〒060-0061 北海道札幌市中央区南1条西8丁目9-2 BB18ビル6階
+    </div>
+    <div class="qr">
+      <div class="img"><img src="qr.png" alt="公式サイトQR"></div>
+      <p>公式サイトで<br>ジムの中をチェック</p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
