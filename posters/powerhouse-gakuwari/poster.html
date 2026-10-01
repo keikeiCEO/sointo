@@ -25,10 +25,9 @@
   .shade { inset: 0; background: linear-gradient(180deg, rgba(11,11,13,.55) 0%, rgba(11,11,13,0) 14%, rgba(11,11,13,0) 32%, rgba(11,11,13,.6) 44%, rgba(11,11,13,.93) 56%, rgba(11,11,13,.96) 100%); }
 
   /* ロゴ：白フチのステッカー風 */
-  .logo { top: 11mm; left: 15mm; height: 40mm;
-    filter: drop-shadow(0 0 .5mm #fff) drop-shadow(0 0 .5mm #fff) drop-shadow(0 0 .4mm #fff) drop-shadow(0 1.5mm 3mm rgba(0,0,0,.6)); }
-  .stamp { top: 12mm; right: 15mm; width: 30mm; height: 30mm; border: .35mm dashed #9A9A9A;
-    background: #fff; color: #9A9A9A; font-size: 2.6mm; text-align: center; padding-top: 2mm; }
+  .logo { top: 10mm; left: 14mm; width: 60mm; height: 54mm; background: #fff; border-radius: 2.5mm;
+    display: flex; align-items: center; justify-content: center; box-shadow: 0 1.5mm 5mm rgba(0,0,0,.55); }
+  .logo img { width: 52mm; display: block; }
 
   /* 見出し */
   .eyebrow { top: 166mm; left: 18mm; display: flex; align-items: center; gap: 3mm; }
@@ -86,7 +85,7 @@
   .qr { top: 338mm; right: 15mm; width: 38mm; text-align: center; }
   .qr .img { background: #fff; padding: 2mm; border-radius: 1.5mm; }
   .qr img { width: 100%; display: block; image-rendering: pixelated; }
-  .qr p { font-size: 3.8mm; font-weight: 700; margin-top: 1.2mm; color: var(--mute); }
+  .qr p { font-size: 4mm; font-weight: 900; margin-top: 1.5mm; line-height: 1.35; color: #fff; }
 
   .notes { left: 15mm; right: 15mm; bottom: 5mm; font-size: 3.5mm; color: #A8A8A8; line-height: 1.5; }
 </style>
@@ -97,8 +96,7 @@
   <div class="abs bg"></div>
   <div class="abs shade"></div>
 
-  <img class="abs logo" src="logo.png" alt="POWERHOUSE GYM SAPPORO,JAPAN">
-  <div class="abs stamp">掲示許可印</div>
+  <div class="abs logo"><img src="logo.png" alt="POWERHOUSE GYM SAPPORO,JAPAN"></div>
 
   <div class="abs eyebrow"><span class="tag"><span>学生限定 学割プラン</span></span><span class="who">大学・大学院・短大・専門学校生</span></div>
   <div class="abs head">学生なら、本格ジムが</div>
@@ -109,13 +107,13 @@
   </div>
 
   <div class="abs ribbon">
-    <span>フルタイム会員より 毎月<span class="n">4,698</span>円おトク</span><i></i><span>1日あたり 約<span class="n">99</span>円</span>
+    <span>通常会員より 毎月<span class="n">4,698</span>円おトク</span><i></i><span>1日あたり 約<span class="n">99</span>円</span>
   </div>
 
   <div class="abs facts">
     <div class="fact"><div class="k">入会金・事務手数料</div><div class="v"><span class="n">0</span>円</div></div>
     <div class="fact"><div class="k">365日 使い放題</div><div class="v"><span class="n">7:00–23:00</span></div></div>
-    <div class="fact"><div class="k">見学・無料体験</div><div class="v">受付中</div></div>
+    <div class="fact"><div class="k">見学・無料体験</div><div class="v">QRから受付中</div></div>
   </div>
 
   <div class="abs ext"><div></div><span class="pin">この学校の向かい！</span></div>
@@ -127,9 +125,9 @@
     <div class="sub">学割のご入会は窓口で 11:00–18:00<br>札幌市中央区南1条西8丁目9-2 BB18ビル6階<br>大通駅 徒歩7分／西11丁目駅 徒歩5分</div>
   </div>
 
-  <div class="abs qr"><div class="img"><img src="qr.png" alt="公式サイト"></div><p>公式サイト</p></div>
+  <div class="abs qr"><div class="img"><img src="qr.png" alt="公式サイト"></div><p>見学・無料体験は<br>こちらから</p></div>
 
-  <div class="abs notes">※学割は学生証の提示が必要です（毎年度）。在学中に限ります。　※フルタイム会員は月額7,678円（税込）。1日あたりの金額は月額2,980円を30日で割った目安です。</div>
+  <div class="abs notes">※学割は学生証の提示が必要です（毎年度）。在学中に限ります。　※通常会員は月額7,678円（税込）。1日あたりの金額は月額2,980円を30日で割った目安です。</div>
 
 </div>
 </body>
