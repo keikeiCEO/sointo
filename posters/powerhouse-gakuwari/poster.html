@@ -7,159 +7,118 @@
 <style>
   @page { size: 297mm 420mm; margin: 0; }
   :root {
-    --cyan: #2EC4F1;
-    --ink: #0B0D10;
-    --ink2: #171A1F;
-    --red: #E2231A;
-    --white: #FFFFFF;
-    --mute: #B9C2CC;
+    --red: #E50213;
+    --ink: #141414;
+    --gray: #6B6B6B;
+    --line: #DADADA;
+    --paper: #FFFFFF;
+    --soft: #F4F3F0;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { background: var(--ink); }
-  body { font-family: "Noto Sans JP", sans-serif; color: var(--white); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .poster { width: 297mm; height: 420mm; position: relative; overflow: hidden; background: var(--ink); }
-  .num { font-family: "Anton", sans-serif; font-weight: 400; letter-spacing: .01em; }
-  .en  { font-family: "Oswald", sans-serif; font-weight: 700; }
+  html, body { background: var(--paper); }
+  body { font-family: "Noto Sans JP", sans-serif; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .poster { width: 297mm; height: 420mm; position: relative; overflow: hidden; background: var(--paper); }
+  .n { font-family: "Barlow Condensed", sans-serif; font-weight: 700; }
   .abs { position: absolute; }
 
-  /* ---------- 上部：館内写真 ---------- */
-  .hero { left: 0; right: 0; top: 0; height: 150mm; background: url(interior.jpg) center 55% / cover no-repeat; }
-  .hero::after { content: ""; position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(11,13,16,.35) 0%, rgba(11,13,16,0) 22%, rgba(11,13,16,.15) 48%, rgba(11,13,16,.88) 80%, var(--ink) 100%); }
+  /* ヘッダー */
+  .logo { top: 10mm; left: 18mm; height: 30mm; }
+  .stamp { top: 10mm; right: 18mm; width: 30mm; height: 30mm; border: .35mm dashed #B5B5B5; color: #A0A0A0;
+    font-size: 2.6mm; text-align: center; padding-top: 2mm; line-height: 1.4; }
 
-  .logo { top: 10mm; left: 12mm; width: 54mm; height: 50mm; background: var(--white); border-radius: 3mm;
-    display: flex; align-items: center; justify-content: center; box-shadow: 0 1mm 4mm rgba(0,0,0,.35); }
-  .logo img { width: 46mm; display: block; }
+  /* 館内写真 */
+  .photo { top: 46mm; left: 0; right: 0; height: 152mm; background: url(interior.jpg) center 62% / cover no-repeat; }
+  .photo .tag { position: absolute; left: 18mm; bottom: 0; background: var(--red); color: #fff;
+    font-weight: 900; font-size: 7mm; letter-spacing: .08em; padding: 3mm 6mm; }
 
-  .stamp { top: 10mm; right: 12mm; width: 40mm; height: 40mm; border: .5mm dashed #888; background: rgba(255,255,255,.94);
-    color: #666; font-size: 3mm; font-weight: 500; text-align: center; padding-top: 2.5mm; line-height: 1.4; }
+  /* 本文 */
+  .who { top: 210mm; left: 18mm; font-weight: 700; font-size: 6mm; color: var(--gray); letter-spacing: .04em; }
+  .head { top: 220mm; left: 16.5mm; font-weight: 900; font-size: 17mm; line-height: 1.15; letter-spacing: -.01em; }
 
-  .target { top: 98mm; left: 14mm; display: inline-flex; font-weight: 900; font-size: 7.6mm; }
-  .target .tag { background: var(--cyan); color: var(--ink); padding: 1.6mm 4mm; }
-  .target .who { background: var(--white); color: var(--ink); padding: 1.6mm 4.5mm; }
+  .price { top: 241mm; left: 16mm; display: flex; align-items: flex-end; line-height: .82; }
+  .price .m { font-weight: 900; font-size: 13mm; margin: 0 2mm 3.5mm 1.5mm; }
+  .price .big { font-size: 66mm; color: var(--red); letter-spacing: -.01em; }
+  .price .y { margin: 0 0 3.2mm 2mm; display: flex; flex-direction: column; align-items: flex-start; gap: 1.5mm; }
+  .price .y small { font-size: 4.6mm; font-weight: 700; color: var(--gray); }
+  .price .y b { font-size: 13mm; font-weight: 900; line-height: 1; }
 
-  .head { top: 112mm; left: 13mm; font-weight: 900; font-size: 22mm; line-height: 1.05; letter-spacing: -.01em;
-    text-shadow: 0 .6mm 3mm rgba(0,0,0,.6); }
-  .head .c { color: var(--cyan); }
+  .compare { top: 248mm; right: 18mm; width: 72mm; text-align: right; }
+  .compare .k { font-size: 4.2mm; font-weight: 700; color: var(--gray); line-height: 1.5; }
+  .compare .v { font-size: 7mm; font-weight: 900; line-height: 1.3; }
+  .compare .v .n { font-size: 11mm; color: var(--red); }
+  .compare hr { border: 0; border-top: .35mm solid var(--line); margin: 3mm 0; }
 
-  /* ---------- 価格 ---------- */
-  .price { top: 143mm; left: 0; right: 0; height: 80mm; }
-  .price .band { position: absolute; inset: 0; background: var(--cyan); clip-path: polygon(0 7%, 100% 0, 100% 93%, 0 100%); }
-  .price .inner { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--ink); padding-right: 4mm; }
-  .price .lbl { background: var(--ink); color: var(--white); font-weight: 900; font-size: 9mm; padding: 3.5mm 3.5mm; margin-right: 4mm; }
-  .price .big { font-size: 68mm; line-height: 1; margin-top: -2mm; }
-  .price .yen { display: flex; flex-direction: column; align-items: flex-start; margin-left: 2mm; align-self: flex-end; margin-bottom: 13mm; }
-  .price .tax { background: var(--ink); color: var(--white); font-weight: 900; font-size: 5.2mm; padding: .5mm 2mm; margin-bottom: 1mm; }
-  .price .yen b { font-weight: 900; font-size: 20mm; line-height: 1; }
+  /* 3つの事実 */
+  .facts { top: 304mm; left: 18mm; right: 18mm; display: grid; grid-template-columns: 1fr 1fr 1fr;
+    border-top: .5mm solid var(--ink); border-bottom: .35mm solid var(--line); }
+  .fact { padding: 4mm 0 4.5mm 0; }
+  .fact + .fact { padding-left: 6mm; border-left: .35mm solid var(--line); }
+  .fact .k { font-size: 4.2mm; font-weight: 700; color: var(--gray); }
+  .fact .v { font-size: 9.5mm; font-weight: 900; line-height: 1.25; margin-top: .5mm; }
+  .fact .v .n { font-size: 12mm; }
 
-  .save { top: 227mm; left: 14mm; right: 14mm; display: flex; gap: 5mm; }
-  .save .box { flex: 1; border: .7mm solid var(--cyan); padding: 2.6mm 5mm; }
-  .save .k { font-size: 4.8mm; font-weight: 700; color: var(--mute); }
-  .save .v { font-weight: 900; font-size: 8mm; line-height: 1.2; }
-  .save .v .num { font-size: 12.5mm; color: var(--cyan); margin: 0 .8mm; }
+  /* 下段：外観・CTA・QR */
+  .ext { top: 342mm; left: 18mm; width: 74mm; height: 62mm; background: url(exterior.jpg) center 40% / cover no-repeat; }
+  .ext span { position: absolute; left: 0; top: 0; background: var(--ink); color: #fff; font-size: 3.8mm; font-weight: 900; padding: 1.2mm 2.6mm; }
 
-  /* ---------- 外観＋ポイント ---------- */
-  .ext { top: 256mm; left: 14mm; width: 112mm; height: 92mm; background: url(exterior.jpg) center / cover no-repeat;
-    border: 1mm solid var(--white); }
-  .ext .cap { position: absolute; left: -1mm; right: -1mm; bottom: -1mm; background: var(--red); color: var(--white);
-    font-weight: 900; font-size: 6.6mm; line-height: 1.25; padding: 2.2mm 3.5mm; }
-  .ext .cap small { display: block; font-size: 4.2mm; font-weight: 700; }
-  .ext .flag { position: absolute; top: 5mm; left: -1mm; background: var(--white); color: var(--ink); font-weight: 900; font-size: 5.4mm; padding: 1.2mm 3mm; }
-  .ext .ring { position: absolute; left: 40.5mm; top: 8mm; width: 24.5mm; height: 64mm; border: 1mm solid var(--cyan); border-radius: 3mm;
-    box-shadow: 0 0 0 .6mm rgba(0,0,0,.4); }
+  .cta { top: 343mm; left: 100mm; width: 130mm; }
+  .cta .lead { font-size: 4.4mm; font-weight: 700; color: var(--gray); }
+  .cta .place { font-size: 8mm; font-weight: 900; line-height: 1.3; margin-top: .5mm; }
+  .cta .place em { font-style: normal; color: var(--red); }
+  .cta .tel { margin-top: 3mm; display: flex; align-items: baseline; gap: 2.5mm; }
+  .cta .tel small { font-size: 4mm; font-weight: 700; }
+  .cta .tel .n { font-size: 13mm; line-height: 1; letter-spacing: .01em; }
+  .cta .sub { font-size: 3.6mm; font-weight: 500; color: var(--gray); margin-top: 1mm; line-height: 1.5; }
 
-  .points { top: 256mm; left: 131mm; right: 14mm; height: 92mm; display: flex; flex-direction: column; gap: 3mm; }
-  .pt { flex: 1; background: var(--ink2); border-left: 1.6mm solid var(--cyan); padding: 0 4mm; display: flex; align-items: center; justify-content: space-between; }
-  .pt .k { font-size: 4.8mm; font-weight: 700; color: var(--mute); line-height: 1.35; }
-  .pt .k b { display: block; color: var(--white); font-size: 4.2mm; }
-  .pt .v { font-weight: 900; font-size: 10mm; white-space: nowrap; }
-  .pt .v .num { font-size: 15mm; color: var(--cyan); }
-  .pt .v.en { font-size: 10mm; color: var(--cyan); }
+  .qr { top: 345mm; right: 18mm; width: 36mm; text-align: center; }
+  .qr img { width: 36mm; display: block; image-rendering: pixelated; }
+  .qr p { font-size: 3.4mm; font-weight: 700; margin-top: 1.5mm; color: var(--gray); }
 
-  .notes { top: 351mm; left: 14mm; right: 14mm; font-size: 3.5mm; line-height: 1.55; color: var(--mute); font-weight: 500; }
-
-  /* ---------- 下部 CTA ---------- */
-  .cta { left: 0; right: 0; bottom: 0; height: 60mm; background: var(--cyan); color: var(--ink); clip-path: polygon(0 9%, 100% 0, 100% 100%, 0 100%); }
-  .cta .copy { position: absolute; top: 9mm; left: 14mm; font-weight: 900; font-size: 9mm; }
-  .cta .copy span { background: var(--ink); color: var(--white); padding: 0 2mm; margin-right: .5mm; }
-  .cta .tel { position: absolute; top: 22mm; left: 14mm; }
-  .cta .hours { font-weight: 900; font-size: 4.6mm; display: flex; align-items: center; gap: 2mm; }
-  .cta .hours b { background: var(--ink); color: var(--white); padding: .3mm 2mm; font-family: "Oswald", sans-serif; font-size: 5mm; }
-  .cta .no { display: flex; align-items: center; gap: 2.5mm; }
-  .cta .no svg { width: 11mm; height: 11mm; }
-  .cta .no .num { font-size: 16mm; line-height: 1.12; }
-  .cta .addr { position: absolute; left: 14mm; bottom: 4mm; font-size: 3.7mm; font-weight: 700; line-height: 1.4; }
-  .cta .qr { position: absolute; right: 14mm; bottom: 5mm; width: 42mm; text-align: center; }
-  .cta .qr .img { background: var(--white); padding: 2.6mm; }
-  .cta .qr img { display: block; width: 100%; image-rendering: pixelated; }
-  .cta .qr p { margin-top: 1.2mm; font-size: 3.6mm; font-weight: 900; }
-  .cta .acc { position: absolute; right: 62mm; top: 13mm; text-align: right; font-weight: 900; font-size: 5mm; line-height: 1.55; }
-  .cta .acc .num { font-size: 7mm; }
+  .notes { left: 18mm; right: 18mm; bottom: 5mm; font-size: 2.9mm; color: var(--gray); line-height: 1.5; }
 </style>
 </head>
 <body>
 <div class="poster">
 
-  <div class="abs hero"></div>
-  <div class="abs logo"><img src="logo.png" alt="POWERHOUSE GYM SAPPORO,JAPAN"></div>
-  <div class="abs stamp">掲示許可印欄<br>（学校使用）</div>
+  <img class="abs logo" src="logo.png" alt="POWERHOUSE GYM SAPPORO,JAPAN">
+  <div class="abs stamp">掲示許可印</div>
 
-  <div class="abs target"><span class="tag">学生限定</span><span class="who">大学・大学院・短大・専門学校生</span></div>
-  <div class="abs head">学生なら、<span class="c">学割プラン</span>で</div>
+  <div class="abs photo"><div class="tag">学生限定　学割プラン</div></div>
+
+  <div class="abs who">大学・大学院・短大・専門学校生のみなさんへ</div>
+  <div class="abs head">学生なら、本格ジムが</div>
 
   <div class="abs price">
-    <div class="band"></div>
-    <div class="inner">
-      <div class="lbl">月額</div>
-      <div class="big num">2,980</div>
-      <div class="yen"><span class="tax">税込</span><b>円</b></div>
-    </div>
+    <span class="m">月</span><span class="big n">2,980</span>
+    <span class="y"><small>税込</small><b>円</b></span>
   </div>
 
-  <div class="abs save">
-    <div class="box">
-      <div class="k">フルタイム会員（月額7,678円）より</div>
-      <div class="v">毎月<span class="num">4,698</span>円おトク</div>
-    </div>
-    <div class="box">
-      <div class="k">30日で割ると</div>
-      <div class="v">1日あたり約<span class="num">99</span>円</div>
-    </div>
+  <div class="abs compare">
+    <div class="k">フルタイム会員 月額7,678円より</div>
+    <div class="v">毎月 <span class="n">4,698</span>円 おトク</div>
+    <hr>
+    <div class="k">30日で割ると</div>
+    <div class="v">1日あたり 約<span class="n">99</span>円</div>
   </div>
 
-  <div class="abs ext">
-    <div class="flag">学校の向かい！</div>
-    <div class="ring"></div>
-    <div class="cap">この看板が目印。ビルの6階です<small>授業の前後に、そのまま寄れる距離</small></div>
+  <div class="abs facts">
+    <div class="fact"><div class="k">入会金・事務手数料</div><div class="v"><span class="n">0</span>円</div></div>
+    <div class="fact"><div class="k">365日 使い放題</div><div class="v"><span class="n">7:00–23:00</span></div></div>
+    <div class="fact"><div class="k">見学・無料体験</div><div class="v">受付中</div></div>
   </div>
 
-  <div class="abs points">
-    <div class="pt"><div class="k">入会金<br>事務手数料</div><div class="v"><span class="num">0</span>円</div></div>
-    <div class="pt"><div class="k">365日 使い放題<b>授業前もバイト帰りも</b></div><div class="v en">7:00-23:00</div></div>
-    <div class="pt"><div class="k">見学・無料体験<b>ひとりでも気軽に</b></div><div class="v">受付中</div></div>
-  </div>
-
-  <div class="abs notes">
-    ※学生証の提示が必要です（毎年度）。在学中に限ります。　※フルタイム会員は月額7,678円（税込）。<br>
-    ※1日あたりの金額は月額2,980円を30日で割った目安です。
-  </div>
+  <div class="abs ext"><span>この学校の向かい</span></div>
 
   <div class="abs cta">
-    <div class="copy"><span>学生証</span>を持って、まずは見学へ。</div>
-    <div class="tel">
-      <div class="hours">学割のご入会は窓口で <b>11:00-18:00</b></div>
-      <div class="no">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#0B0D10"/><path fill="#2EC4F1" d="M16.6 14.2l-1.9-.9c-.3-.1-.7 0-.9.2l-.8 1c-1.4-.7-2.6-1.9-3.3-3.3l1-.8c.3-.2.3-.6.2-.9l-.9-1.9c-.2-.4-.6-.5-1-.4l-1.5.4c-.4.1-.6.4-.6.8 0 4.4 3.6 8 8 8 .4 0 .7-.3.8-.6l.4-1.5c.1-.5-.1-.9-.5-1.1z"/></svg>
-        <span class="num">011-212-1174</span>
-      </div>
-    </div>
-    <div class="acc">大通駅 徒歩<span class="num">7</span>分<br>西11丁目駅 徒歩<span class="num">5</span>分</div>
-    <div class="addr"><span class="en">POWERHOUSE GYM SAPPORO JAPAN</span>　〒060-0061 札幌市中央区南1条西8丁目9-2 BB18ビル6階</div>
-    <div class="qr">
-      <div class="img"><img src="qr.png" alt="公式サイトQR"></div>
-      <p>公式サイトはこちら</p>
-    </div>
+    <div class="lead">授業の前後に、そのまま寄れます</div>
+    <div class="place">向かいのビル<em>6階</em>。<br>学生証を持って、見学へ。</div>
+    <div class="tel"><small>TEL</small><span class="n">011-212-1174</span></div>
+    <div class="sub">学割のご入会は窓口で 11:00–18:00<br>札幌市中央区南1条西8丁目9-2 BB18ビル6階</div>
   </div>
+
+  <div class="abs qr"><img src="qr.png" alt="公式サイト"><p>公式サイト</p></div>
+
+  <div class="abs notes">※学割は学生証の提示が必要です（毎年度）。在学中に限ります。　※1日あたりの金額は月額2,980円を30日で割った目安です。　大通駅 徒歩7分／西11丁目駅 徒歩5分</div>
 
 </div>
 </body>
