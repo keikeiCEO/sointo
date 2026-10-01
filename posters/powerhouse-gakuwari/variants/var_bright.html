@@ -10,13 +10,14 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: "Noto Sans JP", sans-serif; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; background: var(--paper); }
   .poster { width: 297mm; height: 420mm; position: relative; overflow: hidden; background: var(--paper); }
-  .n { font-family: "Barlow Condensed", sans-serif; font-weight: 700; }
+  .n { font-family: "Noto Sans JP", sans-serif; font-weight: 900; letter-spacing: -.03em; }
   .abs { position: absolute; }
 
+  .header { top: 0; left: 0; right: 0; height: 66mm; background: linear-gradient(135deg, #22252B 0%, var(--ink) 60%, #0E0F12 100%); }
   .logo { top: 10mm; left: 14mm; width: 52mm; }
   .tagline { top: 22mm; right: 16mm; text-align: right; }
-  .tagline .en { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 6mm; letter-spacing: .2em; color: var(--red); }
-  .tagline .ja { font-weight: 900; font-size: 7.5mm; margin-top: 1mm; }
+  .tagline .en { font-weight: 900; font-size: 5mm; letter-spacing: .25em; color: #FF3B45; }
+  .tagline .ja { font-weight: 900; font-size: 7.5mm; margin-top: 1mm; color: #fff; }
 
   /* 写真：斜めカット＋赤ライン */
   .photo { top: 62mm; left: 0; right: 0; height: 150mm; background: url(../interior.jpg) center 60% / cover no-repeat;
@@ -34,24 +35,24 @@
   .head { top: 226mm; left: 17mm; font-weight: 900; font-size: 15mm; letter-spacing: -.01em; }
 
   .price { top: 244mm; left: 15mm; display: flex; align-items: flex-end; }
-  .price .m { font-weight: 900; font-size: 12mm; margin: 0 1.5mm 6mm 2mm; }
-  .price .big { font-size: 63mm; line-height: .9; color: var(--red); text-shadow: 1.6mm 1.6mm 0 var(--pink); }
-  .price .y { margin: 0 0 6mm 3mm; display: flex; flex-direction: column; gap: 1.5mm; }
+  .price .m { font-weight: 900; font-size: 12mm; margin: 0 1.5mm 5mm 2mm; }
+  .price .big { font-size: 52mm; line-height: 1; color: var(--red); text-shadow: 1.6mm 1.6mm 0 var(--pink); }
+  .price .y { margin: 0 0 5mm 3mm; display: flex; flex-direction: column; gap: 1.5mm; }
   .price .y small { background: var(--ink); color: #fff; font-size: 4.4mm; font-weight: 900; padding: .3mm 2mm; text-align: center; }
   .price .y b { font-size: 14mm; font-weight: 900; line-height: 1; }
 
-  .save { top: 248mm; right: 16mm; width: 82mm; }
+  .save { top: 248mm; right: 15mm; width: 88mm; }
   .save .row { background: #fff; border-radius: 3mm; padding: 3mm 4.5mm; box-shadow: 0 1mm 4mm rgba(0,0,0,.08); }
   .save .row + .row { margin-top: 3mm; }
   .save .k { font-size: 4.4mm; font-weight: 700; color: var(--gray); }
-  .save .v { font-size: 7.4mm; font-weight: 900; }
-  .save .v .n { font-size: 11mm; color: var(--red); }
+  .save .v { font-size: 6.8mm; font-weight: 900; white-space: nowrap; }
+  .save .v .n { font-size: 9.4mm; color: var(--red); }
 
   .facts { top: 309mm; left: 15mm; right: 15mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
   .fact { background: #fff; border-radius: 3mm; padding: 3mm 5mm 3.4mm; box-shadow: 0 1mm 4mm rgba(0,0,0,.08); border-top: 1.4mm solid var(--red); }
   .fact .k { font-size: 4.6mm; font-weight: 700; color: var(--gray); }
   .fact .v { font-size: 10mm; font-weight: 900; line-height: 1.2; }
-  .fact .v .n { font-size: 13mm; }
+  .fact .v .n { font-size: 11.5mm; }
 
   .bottom { top: 339mm; left: 0; right: 0; bottom: 0; background: var(--ink); color: #fff; clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%); }
   .ext { top: 349mm; left: 16mm; width: 70mm; height: 56mm; border-radius: 3mm; border: 1.2mm solid #fff; background: url(../exterior.jpg) center 40% / cover no-repeat;
@@ -62,7 +63,7 @@
   .cta .place em { font-style: normal; color: #FF4D57; }
   .cta .tel { margin-top: 2mm; display: flex; align-items: center; gap: 2.5mm; }
   .cta .tel small { font-size: 4.6mm; font-weight: 900; background: #fff; color: var(--ink); padding: .2mm 1.6mm; }
-  .cta .tel .n { font-size: 14mm; line-height: 1; }
+  .cta .tel .n { font-size: 12.5mm; line-height: 1; }
   .cta .sub { font-size: 4mm; color: #C8C8C8; margin-top: 1.2mm; line-height: 1.5; }
   .qr { top: 349mm; right: 12mm; width: 48mm; text-align: center; }
   .qr .img { background: #fff; padding: 2mm; border-radius: 1.5mm; width: 36mm; margin: 0 auto; }
@@ -73,6 +74,7 @@
 </head>
 <body>
 <div class="poster">
+  <div class="abs header"></div>
   <img class="abs logo" src="../logo.png" alt="POWERHOUSE GYM SAPPORO,JAPAN">
   <div class="abs tagline"><div class="en">STUDENT PLAN</div><div class="ja">本格トレーニングの、最初の一歩。</div></div>
 
